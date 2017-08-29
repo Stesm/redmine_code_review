@@ -44,6 +44,8 @@ en:
   permission_assign_code_review: Assign code reviews
 
   select_tracker_for_code_review_assignment: 'Select the tracker for code review assignments.'
+  select_required_props: Select custom properties for display
+  field_custom_props: 'Custom props list '
   field_assignment_tracker: 'Tracker'
   review_assignments: Review assignments
   review_assigned_for: Review assigned for

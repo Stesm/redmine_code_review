@@ -96,7 +96,8 @@
 
       <b><%=h l(:select_tracker_for_code_review_assignment)%>:</b>
       <p><%= f.select :assignment_tracker_id, @project.trackers.collect {|t| [t.name, t.id]}, :required => true %></p>
-
+      <b><%=h l(:select_required_props)%>:</b>
+      <p><%= f.select :custom_props, @project.all_issue_custom_fields.collect {|i| [i.name, i.id]}, {}, {:multiple => true, :size => 5} %></p>
       <p>
         <%= f.check_box :hide_code_review_tab %>
       </p>
