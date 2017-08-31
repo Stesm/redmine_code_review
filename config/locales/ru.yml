@@ -35,6 +35,7 @@ ru:
   label_review_issue_relates: 'Review issue relates to them'
   label_review_issue_blocks: 'Review issue blocks them'
   label_review_issue_do_nothing: 'Do nothing'
+  field_props_list: Настраиваемые поля
 
   permission_view_code_review: View code reviews
   permission_add_code_review: Add code reviews

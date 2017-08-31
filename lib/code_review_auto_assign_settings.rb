@@ -35,6 +35,15 @@ module CodeReviewAutoAssignSettings
       yml[:enabled] == true or yml[:enabled] == 'true'
     end
 
+    def props_list=(id)
+      props_list << id
+    end
+
+    def props_list
+      yml[:props_list] = [] unless yml[:props_list].is_a?(Array)
+      yml[:props_list]
+    end
+
     def author_id=(id)
       yml[:author_id] = id
     end

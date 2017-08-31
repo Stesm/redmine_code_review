@@ -77,9 +77,7 @@
   }
 </script>
   
-  <%
-  @code_review_setting = CodeReviewProjectSetting.find_or_create(@project)
-%>
+  <% @code_review_setting = CodeReviewProjectSetting.find_or_create(@project) %>
 
   <%= labelled_form_for :setting, @code_review_setting,
     :url => {:controller => 'code_review_settings',
@@ -97,7 +95,7 @@
       <b><%=h l(:select_tracker_for_code_review_assignment)%>:</b>
       <p><%= f.select :assignment_tracker_id, @project.trackers.collect {|t| [t.name, t.id]}, :required => true %></p>
       <b><%=h l(:select_required_props)%>:</b>
-      <p><%= f.select :custom_props, @project.all_issue_custom_fields.collect {|i| [i.name, i.id]}, {}, {:multiple => true, :size => 5} %></p>
+      <p><%= select :auto_assign, :props_list, @project.all_issue_custom_fields.collect {|i| ["#{'*' if i.is_required} #{i.name}", i.id]}, {:selected => @code_review_setting.auto_assign_settings.props_list}, {:multiple => true, :size => 5} %></p>
       <p>
         <%= f.check_box :hide_code_review_tab %>
       </p>
