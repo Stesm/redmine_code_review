@@ -22,7 +22,7 @@
   <h2>
     <%= l(:label_line_number, :line => @review.line) %>
   </h2>
-  <%= form_for @review,:as => :review,
+  <%=  form_for @review,:as => :review,
     :url => {:controller => 'code_review', :action => 'new', :id=>@project}, :html => {:id => 'review_form'} do |f|  %>
     <%= error_messages_for 'review' %>
     <%= error_messages_for 'issue' %>
@@ -39,7 +39,7 @@
     <%= hidden_field_tag(:diff_all, @review.diff_all) %>
     <p>
       <label><b><%=h l(:field_subject)%>:</b></label>
-      <%= f.text_field :subject, :size => 70, :required => true %>
+      <%= f.text_field :subject, :size => 70, :required => true, :value => @setting.custom_props %>
     </p>
 
     <% if @setting.tracker_in_review_dialog %>
@@ -67,7 +67,7 @@
       <% end %>
     </p>
     <% @issue.custom_field_values.each do |value| %>
-      <% next unless value.required? -%>
+      <% next unless value.required? || @setting.auto_assign_settings.props_list.include?(value.custom_field_id) -%>
       <p><%= custom_field_tag_with_label :issue, value %></p>
     <% end %>
     <p>

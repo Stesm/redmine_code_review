@@ -36,6 +36,8 @@ ru:
   label_review_issue_blocks: 'Review issue blocks them'
   label_review_issue_do_nothing: 'Do nothing'
   field_props_list: Настраиваемые поля
+  default_issue_name: Заголовок новой задачи по умолчанию
+  select_required_props: Настраиваемые поля
 
   permission_view_code_review: View code reviews
   permission_add_code_review: Add code reviews

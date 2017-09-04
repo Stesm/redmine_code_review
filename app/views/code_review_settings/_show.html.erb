@@ -94,12 +94,15 @@
 
       <b><%=h l(:select_tracker_for_code_review_assignment)%>:</b>
       <p><%= f.select :assignment_tracker_id, @project.trackers.collect {|t| [t.name, t.id]}, :required => true %></p>
-      <b><%=h l(:select_required_props)%>:</b>
-      <p><%= select :auto_assign, :props_list, @project.all_issue_custom_fields.collect {|i| ["#{'*' if i.is_required} #{i.name}", i.id]}, {:selected => @code_review_setting.auto_assign_settings.props_list}, {:multiple => true, :size => 5} %></p>
+      <hr/>
+      <b><%= h l(:select_required_props) %>:</b>
+      <p><%= select :auto_assign, :props_list, @project.all_issue_custom_fields.collect {|i| [i.name, i.id] unless i.is_required}, {:selected => @code_review_setting.auto_assign_settings.props_list}, {:multiple => true, :size => 5} %></p>
+      <b><%= h l(:default_issue_name) %>:</b>
+      <p><%= text_field :setting, :custom_props, {:value => @code_review_setting.custom_props, :size => 70} %></p>
+      <hr/>
       <p>
         <%= f.check_box :hide_code_review_tab %>
       </p>
-
       <p>
         <label><%=h l(:label_if_revision_has_issues)%>:</label>
         <%= f.radio_button(:auto_relation, CodeReviewProjectSetting::AUTORELATION_TYPE_RELATES) %>
@@ -110,7 +113,6 @@
 
         <%= f.radio_button(:auto_relation, CodeReviewProjectSetting::AUTORELATION_TYPE_NONE) %>
         <%=h l(:label_review_issue_do_nothing) %>
-
       </p>
       <hr/>
 

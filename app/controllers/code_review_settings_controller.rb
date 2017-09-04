@@ -30,6 +30,11 @@ class CodeReviewSettingsController < ApplicationController
       @setting.assign_attributes params[:setting]
       @setting.updated_by = @user.id
       params[:auto_assign][:filters] = params[:auto_assign][:filters].values unless params[:auto_assign][:filters].blank?
+
+      params[:auto_assign]['props_list'] += @project.all_issue_custom_fields.collect { |i| i.id if i.is_required }
+      params[:auto_assign]['props_list'].delete_if { |v| v == '' || v.nil? }
+      params[:auto_assign]['props_list'].map! { |v| v.to_i }
+
       @setting.auto_assign_settings = params[:auto_assign].to_yaml
 
       @setting.save!
